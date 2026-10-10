@@ -19,11 +19,13 @@ edrone marketing automation SDK — distribution `entirius-py-edrone-sdk`, impor
 - Git flow: `master` (production) + `develop` (integration); changes land via PR; semver tag on `master`.
 - Never rename the import package `edrone_sdk` — it is a public API contract.
 - Default: do not commit — git is the user's call.
+- No AI attribution in commits or PR descriptions.
 
 ## Architecture
 
-- `services/client.py` — `EdroneClient`: builds an authorized payload and posts subscription changes to `/trace`.
-- `services/request.py` — thin HTTP wrapper over `requests`.
-- `dto/` — `AuthDTO`, `SubscribeEdrone` (request), `SubscribeResponse` (response).
-- `validators/` — response shape validation.
-- Integration test hits the live edrone API — skipped unless `EDRONE_APP_ID` is set.
+- `src/edrone_sdk/services/client.py`: `EdroneClient` builds an authorized payload and posts subscription changes
+  to `/trace`.
+- `services/request.py`: thin HTTP wrapper over `requests`.
+- `dto/`: `AuthDTO`, `SubscribeEdrone` (request), `SubscribeResponse` (response).
+- `validators/`: response shape validation.
+- The integration test hits the live edrone API and is skipped unless `EDRONE_APP_ID` is set.
